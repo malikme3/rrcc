@@ -1,0 +1,29 @@
+
+
+
+<div class="container">
+    <h1 color="white">Welcome to Lion Team</h1>
+    <form ng-submit="availabilityCtrl.addInformation()()">
+        <div class="form-group">
+            Your Name:
+            <input id="" type="text" ng-model="availabilityCtrl.playerName" ng-blur="" placeholder="Please add your name here" class="form-control">
+        
+        <div class="form-group">
+            Availabilty:
+            <select ng-model="availabilityCtrl.playerAvailablity" ng-options="person for person in availabilityCtrl.options" placeholder="Please add your name here" class="form-control"></select>
+
+        </div>
+
+        <input type="submit" class="button">
+
+    </form>
+   
+</div>
+     <div class="form-group">
+<!--    Total available players: {{ctrl.playerList.length}}</br>-->
+         Total available players: 13</br>
+    <class="form-group" ng-repeat="player in availabilityCtrl.playerList">
+        Status :: {{player.name}} is Availabilty :: {{player.availabilty}} </br>
+</div>
+<div class="form-group"></div>
+
