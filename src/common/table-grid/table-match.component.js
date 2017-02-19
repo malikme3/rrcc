@@ -15,5 +15,10 @@
         , bindings: {
             data: '<'
         }
+    }).component('photoColumn', {
+        templateUrl: 'src/common/table-grid/photo-column.html'
+        , bindings: {
+            data: '<'
+        }
     });
 })();
