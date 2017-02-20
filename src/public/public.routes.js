@@ -14,6 +14,8 @@
             }).state('public.landing', {
                 url: '/'
                 , templateUrl: 'src/public/home/landing.html'
+                , controller: 'HomeController'
+                , controllerAs: 'homeCtrl'
             }).state('public.home', {
                 url: '/home'
                 , templateUrl: 'src/public/home/home.html'

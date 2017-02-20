@@ -20,5 +20,12 @@
         , bindings: {
             data: '<'
         }
+    }).component('dynamicTable', {
+        templateUrl: 'src/common/table-grid/dynamic-table.html'
+        , bindings: {
+            category: '<'
+            , tables: '<'
+            , header: '<'
+        }
     });
 })();
