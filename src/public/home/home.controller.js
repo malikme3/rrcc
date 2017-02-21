@@ -8,24 +8,24 @@
         
         $ctrl.tableData = [
             {
-                "id": "58ab0b1fa456c568903fb707"
-                , "picture": "http://placehold.it/32x32"
+                "id": "1"
+                , "picture": "hi"
                 , "age": 20
                 , "name": "Eaton Fields"
                 , "team": "COMSTRUCT"
                 , "score": "DAIDO"
   }
             , {
-                "id": "58ab0b1f04c4d254c9864e4b"
-                , "picture": "http://placehold.it/32x32"
+                "id": "2"
+                , "picture": "EY"
                 , "age": 20
                 , "name": "Holden Wright"
                 , "team": "COMBOT"
                 , "score": "ISOLOGIX"
   }
             , {
-                "id": "58ab0b1f61433ed9629721c8"
-                , "picture": "http://placehold.it/32x32"
+                "id": "3"
+                , "picture": "ER"
                 , "age": 20
                 , "name": "Bass Russo"
                 , "team": "EWAVES"

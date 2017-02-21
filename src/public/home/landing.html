@@ -1,20 +1,4 @@
 <div id="main-content" class="container">
-    <!--    Top Scorer-->
-    
-    <div id="home-tiles" class="row">
-        <div class="col-xs-12">
-            <h2 id="menu-categories-title" class="text-center">Top Wickets</h2>
-            <dynamic-table category="homeCtrl.matchResults" tables="homeCtrl.tableData" header="homeCtrl.tableHeader"> </dynamic-table>
-        </div>
-    </div>
-    <!--    <dynamic-table category="homeCtrl.matchResults" tables="homeCtrl.tableData" header="homeCtrl.tableHeader"> </dynamic-table>-->
-    <!--    Top Wicket Taker-->
-    <div id="home-tiles" class="row">
-        <div class="col-xs-12">
-            <h2 id="menu-categories-title" class="text-center">Top Wickets</h2>
-            <dynamic-table category="homeCtrl.matchResults" tables="homeCtrl.tableData" header="homeCtrl.tableHeader"> </dynamic-table>
-        </div>
-    </div>
     <!--    Player of the week-->
     <div id="home-tiles" class="row">
         <div class="col-xs-12">
@@ -26,109 +10,28 @@
                         <br> </p> <img style="width: auto;" src="images/lagan-2.jpg" alt="Tiger Pro Logo"></img><span>Player of the Week !!</span> </div>
             </a>
         </div>
-        <div>
-            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#next-matches">Next Matches</button>
-        </div>
-        <div id="next-matches" class="col-xs-12">
-            <div id="map-tile-home" align="middle">
-                <a ui-sref="public.teams({teamName: 'tiger'})">
-                    <div class="headingg"> Panthor vs Tiger March 3rd (Sunday @ RRCC)</div>
-                </a>
-                <a ui-sref="public.teams({teamName: 'tiger'})">
-                    <div class="headingg"> Lagaan vs Tiger Pro March 3rd (Sunday @ RRCC)</div>
-                </a>
-                <a ui-sref="public.teams({teamName: 'tiger'})">
-                    <div class="headingg"> Lagaan vs Tiger Pro March 3rd (Sunday @ RRCC)</div>
-                </a>
+        <button type="button" class="btn btn-info col-xs-12 headingg" data-toggle="collapse" data-target="#recent-matches">Top Players
+            <div id="recent-matches" class="col-xs-12">
+                <div align="middle">
+                    <h2 id="menu-categories-title" class="text-center">Most Runs</h2>
+                    <dynamic-table category="homeCtrl.matchResults" tables="homeCtrl.tableData" header="homeCtrl.tableHeader"> </dynamic-table>
+                </div>
+                <!--    Most runs-->
+                <div align="middle">
+                    <h2 id="menu-categories-title" class="text-center">Most Wickets</h2>
+                    <dynamic-table category="homeCtrl.matchResults" tables="homeCtrl.tableData" header="homeCtrl.tableHeader"> </dynamic-table>
+                </div>
             </div>
-        </div>
-        <div>
-            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#recent-matches">Top Scorer</button>
-        </div>
-        <div id="recent-matches" class="col-xs-12">
-            <div id="map-tile-home" align="middle">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Payment</th>
-                            <th>Issue Date</th>
-                            <th>Amount</th>
-                            <th>Period</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td data-label="Payment">Payment #1</td>
-                            <td data-label="Issue Date">02/01/2015</td>
-                            <td data-label="Amount">$2,311</td>
-                            <td data-label="Period">01/01/2015 - 01/31/2015</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Payment">Payment #2</td>
-                            <td data-label="Issue Date">03/01/2015</td>
-                            <td data-label="Amount">$3,211</td>
-                            <td data-label="Period">02/01/2015 - 02/28/2015</td>
-                        </tr>
-                    </tbody>
-                </table>
+        </button>
+        <!--    Start of next week-->
+        <button type="button" class="btn btn-info col-xs-12 headingg" data-toggle="collapse" data-target="#next-matches">Coming Matches
+            <div id="next-matches">
+                <div id="map-tile-home" align="middle">
+                    <div> Panthor vs Tiger March 3rd (Sunday @ RRCC)</div>
+                    <div> Lagaan vs Tiger Pro March 3rd (Sunday @ RRCC)</div>
+                    <div> Lagaan vs Tiger Pro March 3rd (Sunday @ RRCC)</div>
+                </div>
             </div>
-        </div>
+        </button>
     </div>
 </div>
-<!--css-->
-<style src="javascript/css">
-    table {
-        border: 1px solid #ccc;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        border-collapse: collapse;
-        border-spacing: 0;
-    }
-    
-    table tr {
-        border: 1px solid #ddd;
-        padding: 5px;
-    }
-    
-    table th,
-    table td {
-        padding: 10px;
-        text-align: center;
-    }
-    
-    table th {
-        text-transform: uppercase;
-        font-size: 14px;
-        letter-spacing: 1px;
-    }
-    
-    @media screen and (max-width: 600px) {
-        table {
-            border: 0;
-        }
-        table thead {
-            display: none;
-        }
-        table tr {
-            margin-bottom: 10px;
-            display: block;
-            border-bottom: 2px solid #ddd;
-        }
-        table td {
-            display: block;
-            text-align: right;
-            font-size: 13px;
-            border-bottom: 1px dotted #ccc;
-        }
-        table td:last-child {
-            border-bottom: 0;
-        }
-        table td:before {
-            content: attr(data-label);
-            float: left;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-    }
-</style>
