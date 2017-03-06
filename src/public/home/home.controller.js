@@ -2,49 +2,44 @@
     "use strict";
     angular.module('public').controller('HomeController', HomeController);
     //HomeController.$inject = [''];
-
     function HomeController() {
         var $ctrl = this;
-        
         $ctrl.tableData = [
             {
                 "id": "1"
-                , "picture": "hi"
-                , "age": 20
-                , "name": "Eaton Fields"
-                , "team": "COMSTRUCT"
-                , "score": "DAIDO"
+                , "name": "ZABAIR"
+                , "team": "Lion"
+                , "score": 123
+                , "matches": 8
+                , "average": "30.2"
   }
             , {
                 "id": "2"
-                , "picture": "EY"
-                , "age": 20
-                , "name": "Holden Wright"
-                , "team": "COMBOT"
-                , "score": "ISOLOGIX"
+                , "name": "MAJID"
+                , "team": "Tiger Pro"
+                , "score": 157
+                , "matches": 9
+                , "average": "25.5"
   }
             , {
                 "id": "3"
-                , "picture": "ER"
-                , "age": 20
-                , "name": "Bass Russo"
-                , "team": "EWAVES"
-                , "score": "APEXIA"
+                , "name": "BASIT"
+                , "team": "Tiger Pro"
+                , "score": 112
+                , "matches": 11
+                , "average": "22.9"
   }
 ]
         $ctrl.tableHeader = [
             {
-                "id": "id"
+                "id": "Postion"
                 , "name": "Name"
                 , "team": "Team"
                 , "score": "Score"
-                , "Matches": "Matches"
-                , "Score": "Score"
-                    //                , "Avergae": "Average"
-                    //                , "highestScore": "Highest Score"
-                    //                , "Notout": "Not out"
+                , "matches": "Matches"
+                , "average": "Average"
   }
 ]
+        $ctrl.tableType = "most-runs";
     };
-
 })();
