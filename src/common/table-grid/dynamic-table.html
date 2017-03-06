@@ -1,4 +1,4 @@
-<table >
+<!--<table >
     <thead>
         <tr>
             <th>Payment</th>
@@ -21,22 +21,32 @@
             <td data-label="Period">02/01/2015 - 02/28/2015</td>
         </tr>
     </tbody>
-</table>
+</table>-->
 
 
-
-<!--
-<table align="left|right|center|justify|char">
-    <tr ng-repeat="match in $ctrl.header ">
-        <th ng-repeat="cell in match">{{cell}}</th>
+<!-- Table for most runs -->
+<table align="left|right|center|justify|char" ng-if="$ctrl.category=='most-runs'">
+    <thead>
+    <tr ng-repeat="header in $ctrl.header ">
+        <th>{{header.id}}</th>
+        <th>{{header.name}}</th>
+        <th>{{header.score}}</th>
+        <th>{{header.team}}</th>
+        <th>{{header.matches}}</th>
+        <th>{{header.average}}</th>
     </tr>
-    <tr ng-repeat="match in $ctrl.tables | limitTo : '3'">
-        <td ng-repeat="cell in match">{{cell}} </td>
+        </thead>
+    <tbody ng-repeat="header in $ctrl.header ">
+    <tr ng-repeat="row in $ctrl.tables">
+        <td data-label="{{header.id}}">{{row.id}}</td>
+        <td data-label="{{header.name}}">{{row.name}}</td>
+        <td data-label="{{header.score}}">{{row.score}}</td>
+        <td data-label="{{header.team}}">{{row.team}}</td>
+        <td data-label="{{header.matches}}">{{row.matches}}</td>
+        <td data-label="{{header.average}}">{{row.average}}</td>
     </tr>
+    </tbody>
 </table>
--->
-
-
 
 <!-- Style Start-->
 <style src="javascript/css">
