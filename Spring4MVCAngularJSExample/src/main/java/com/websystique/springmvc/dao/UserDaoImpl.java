@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.websystique.springmvc.model.Player;
 import com.websystique.springmvc.model.User;
 
 public class UserDaoImpl implements UserDao {
@@ -17,7 +18,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public List<User> getUsers() {
+	public List<Player> getAllPlayers() {
 		// TODO Auto-generated method stub
 		return session().createQuery("from Player").list();
 	}

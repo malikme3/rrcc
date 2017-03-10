@@ -7,6 +7,8 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.stereotype.Service;
 
+import com.websystique.springmvc.dao.UserDao;
+import com.websystique.springmvc.model.Player;
 import com.websystique.springmvc.model.User;
 
 @Service("userService")
@@ -15,6 +17,7 @@ public class UserServiceImpl implements UserService{
 	private static final AtomicLong counter = new AtomicLong();
 	
 	private static List<User> users;
+	private UserDao userDao;
 	
 	static{
 		users= populateDummyUsers();
@@ -22,6 +25,10 @@ public class UserServiceImpl implements UserService{
 
 	public List<User> findAllUsers() {
 		return users;
+	}
+
+	public List<Player> getAllPlayers() {
+		return userDao.getAllPlayers();
 	}
 	
 	public User findById(long id) {

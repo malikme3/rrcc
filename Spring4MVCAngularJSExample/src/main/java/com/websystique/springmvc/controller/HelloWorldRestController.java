@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.websystique.springmvc.model.Player;
 import com.websystique.springmvc.model.User;
 import com.websystique.springmvc.service.UserService;
  
@@ -33,6 +34,16 @@ public class HelloWorldRestController {
             return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }*/
         return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+    }
+    
+    
+    @RequestMapping(value = "/players/", method = RequestMethod.GET)
+    public ResponseEntity<List<Player>> getAllPlayers() {
+        List<Player> users = userService.getAllPlayers();
+       /* if(users.isEmpty()){
+            return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+        }*/
+        return new ResponseEntity<List<Player>>(users, HttpStatus.OK);
     }
  
  
