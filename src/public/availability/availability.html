@@ -4,7 +4,7 @@
 		<div class="form-group">
 
 			Your Name: <input id="" type="text" ng-model="key_search" placeholder="Please add your name here" class="form-control">
-			<ul ng-repeat="x in availabilityCtrl.playerName  | filter : key_search | limitTo:2">
+			<ul ng-if="key_search" ng-repeat="x in availabilityCtrl.playerName  | filter : key_search | limitTo:5">
 				<li>{{ x }}</li>
 			</ul>
 			<div class="form-group">
