@@ -59,11 +59,6 @@
                 , templateUrl: 'src/public/availability/availability.html'
                 , controller: 'availabilityController'
                 , controllerAs: 'availabilityCtrl'
-                , resolve: {
-                    results: ['MenuService', function (MenuService) {
-                        return MenuService.getMatchesResult();
-                    }]
-                }
             })
             // I add this - begin
             .state('public.myinfo', {

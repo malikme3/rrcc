@@ -1,29 +1,27 @@
-
-
-
 <div class="container">
-    <h1 color="white">Welcome to Lion Team</h1>
-    <form ng-submit="availabilityCtrl.addInformation()()">
-        <div class="form-group">
-            Your Name:
-            <input id="" type="text" ng-model="availabilityCtrl.playerName" ng-blur="" placeholder="Please add your name here" class="form-control">
-        
-        <div class="form-group">
-            Availabilty:
-            <select ng-model="availabilityCtrl.playerAvailablity" ng-options="person for person in availabilityCtrl.options" placeholder="Please add your name here" class="form-control"></select>
+	<h1 color="white">Welcome to Lion Team</h1>
+	<form ng-submit="availabilityCtrl.getTeamPlayers()">
+		<div class="form-group">
 
-        </div>
+			Your Name: <input id="" type="text" ng-model="key_search" placeholder="Please add your name here" class="form-control">
+			<ul ng-repeat="x in availabilityCtrl.playerName  | filter : key_search | limitTo:2">
+				<li>{{ x }}</li>
+			</ul>
+			<div class="form-group">
+				Availabilty: <select ng-model="availabilityCtrl.playerAvailablity" ng-options="person for person in availabilityCtrl.options" placeholder="Please add your name here" class="form-control"></select>
 
-        <input type="submit" class="button">
+			</div>
+			<!-- <button class="button" ng-click="reset()">Reset</button> -->
+			<input type="submit" name="please" class="button">
+	</form>
 
-    </form>
-   
 </div>
-     <div class="form-group">
-<!--    Total available players: {{ctrl.playerList.length}}</br>-->
-         Total available players: 13</br>
-    <class="form-group" ng-repeat="player in availabilityCtrl.playerList">
-        Status :: {{player.name}} is Availabilty :: {{player.availabilty}} </br>
+<div class="form-group">
+	<!--    Total available players: {{ctrl.playerList.length}}</br>-->
+	<class ="form-group" ng-repeat="player in availabilityCtrl.playersList"> {{player.player_id}} - {{player.player_name}} </br>
 </div>
+Total available players: {{availabilityCtrl.playersList.length}}
+</br>
+
 <div class="form-group"></div>
 

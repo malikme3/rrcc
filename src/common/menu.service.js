@@ -1,12 +1,12 @@
 (function () {
     "use strict";
     angular.module('common').service('MenuService', MenuService);
-    MenuService.$inject = ['$http', 'ApiPath', '$q'];
+    MenuService.$inject = ['$http', 'ApiPath', 'ApiMVC', '$q'];
 
-    function MenuService($http, ApiPath, $q) {
+    function MenuService($http, ApiPath, ApiMVC, $q) {
         var service = this;
         service.getCategories = function () {
-            return $http.get(ApiPath + '/categories.json').then(function (response) {
+            return $http.get('http://localhost:8001/ZulfiCricket/home').then(function (response) {
                 return response.data;
             });
         };
@@ -21,6 +21,25 @@
                 return response.data;
             });
         };
+
+		// To get the Team players from Registered roster
+		service.getTeamPlayers = function() {
+			/*
+			 * return $http({ url : "http://localhost:8001/ZulfiCricket/home",
+			 * dataType : "json", method : "GET",
+			 *
+			 * headers : { "Content-Type" : "application/json",
+			 * "Access-Control-Allow-Origin": "*",
+			 * "Access-Control-Allow-Headers": "Origin, X-Requested-With,
+			 * Content-Type, Accept"
+			 *  } }).then(function(response) { return response.data; });
+			 */
+
+			var teamPlayers = [ "Zabair Hussain", "Sagher Khan", "Zulifqar Ahmad", "Restish Sing" ];
+			return teamPlayers;
+
+		};
+
         service.getMatchesResult = function () {
             //     var config = {};
             // 	var gUrl = '/Module-5-Assignment-master/src/common/model/demo.text',
