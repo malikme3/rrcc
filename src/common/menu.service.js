@@ -6,7 +6,7 @@
     function MenuService($http, ApiPath, ApiMVC, $q) {
         var service = this;
         service.getCategories = function () {
-            return $http.get('http://localhost:8001/ZulfiCricket/home').then(function (response) {
+            $http.get('http://localhost:8001/ZulfiCricket/home').then(function (response) {
                 return response.data;
             });
         };
@@ -24,25 +24,33 @@
 
 		// To get the Team players from Registered roster
 		service.getTeamPlayers = function() {
-			/*
-			 * return $http({ url : "http://localhost:8001/ZulfiCricket/home",
-			 * dataType : "json", method : "GET",
-			 *
-			 * headers : { "Content-Type" : "application/json",
-			 * "Access-Control-Allow-Origin": "*",
-			 * "Access-Control-Allow-Headers": "Origin, X-Requested-With,
-			 * Content-Type, Accept"
-			 *  } }).then(function(response) { return response.data; });
-			 */
+			var deferred = $q.defer();
+			$http.get('http://localhost:8001/ZulfiCricket/home').then(function(response) {
+				deferred.resolve(response.data);
+			}, function(errResponse) {
+				console.error('Error while getting players list for team selection');
+				deferred.reject(errResponse);
+			});
+			return deferred.promise;
+		}
 
-			var teamPlayers = [ "Zabair Hussain", "Sagher Khan", "Zulifqar Ahmad", "Restish Sing" ];
-			return teamPlayers;
+		// To submit player availability
+		function playerForSelection(playerId, playerName) {
+			var deferred = $q.defer();
+			$http.post(ApiMVC + 'player/section' + playerId, playerName).then(function(response) {
+				deferred.resolve(response.data);
+			}, function(errResponse) {
+				console.error('in Menu Service: Error while submitting player availability');
+				deferred.reject(errResponse);
+			});
+			return deferred.promise;
+		}
 
-		};
 
         service.getMatchesResult = function () {
-            //     var config = {};
-            // 	var gUrl = '/Module-5-Assignment-master/src/common/model/demo.text',
+            // var config = {};
+            // var gUrl =
+			// '/Module-5-Assignment-master/src/common/model/demo.text',
             // 		lUrl = '/src/common/model/demo.text';
             //     return $http.get(gUrl, config).then(function (response) {
             //       return response.data;

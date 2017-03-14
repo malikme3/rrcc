@@ -3,15 +3,15 @@
 	<form ng-submit="availabilityCtrl.getTeamPlayers()">
 		<div class="form-group">
 
-			Your Name: <input id="" type="text" ng-model="key_search" placeholder="Please add your name here" class="form-control">
-			<ul ng-if="key_search" ng-repeat="x in availabilityCtrl.playerName  | filter : key_search | limitTo:5">
-				<li>{{ x }}</li>
+			Your Name: <input id="" type="text" ng-model="availabilityCtrl.key_search" placeholder="Please add your name here" class="form-control">
+			<ul ng-if="availabilityCtrl.key_search" ng-repeat="name in availabilityCtrl.playerName  | filter : availabilityCtrl.key_search | limitTo:5">
+				<a color="inherit" ng-click="availabilityCtrl.upDateSelection(name.player_name)">{{name.player_name}}</a>
 			</ul>
 			<div class="form-group">
-				Availabilty: <select ng-model="availabilityCtrl.playerAvailablity" ng-options="person for person in availabilityCtrl.options" placeholder="Please add your name here" class="form-control"></select>
+				Availability: <select ng-model="availabilityCtrl.playerAvailablity" ng-options="person for person in availabilityCtrl.options" placeholder="Please add your name here" class="form-control"></select>
 
 			</div>
-			<!-- <button class="button" ng-click="reset()">Reset</button> -->
+			<button class="button" ng-click="availabilityCtrl.playerForSelection(3, 'Ahmad')">Reset</button>
 			<input type="submit" name="please" class="button">
 	</form>
 

@@ -9,6 +9,10 @@
 		$ctrl.options = [ "Available", "Not-Available", "Tentive", "Out of town" ];
 		$ctrl.playerAvailablity = "Available";
 		$ctrl.playerName = [];
+		$ctrl.key_search = "";
+		$ctrl.upDateSelection = function(name) {
+			$ctrl.key_search = name;
+		}
 		/*
 		 * $ctrl.getTeamPlayers = function() { $ctrl.playerList =
 		 * MenuService.getTeamPlayers(); console.log("BEFORE: playerList =
@@ -32,7 +36,15 @@
 			"player_club" : "Round Rock"
 		} ];
 
-		$ctrl.playerName = MenuService.getTeamPlayers();
+		MenuService.getTeamPlayers().then(function(response) {
+			$ctrl.playerName = response;
+		});
+
+		$ctrl.playerForSelection = function(playerId, playerName) {
+			MenuService.playerForSelection(playerId, playerName).then(fetchAllUsers, function(errResponse) {
+				console.error('In vailability Controller:Error submitting player for team selection');
+			});
+		}
 
 	}
 
