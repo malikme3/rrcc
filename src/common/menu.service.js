@@ -25,10 +25,10 @@
 		// To get the Team players from Registered roster
 		service.getTeamPlayers = function() {
 			var deferred = $q.defer();
-			$http.get('http://localhost:8001/ZulfiCricket/home').then(function(response) {
+			$http.get(ApiMVC+'/team/selection').then(function(response) {
 				deferred.resolve(response.data);
 			}, function(errResponse) {
-				console.error('Error while getting players list for team selection');
+				console.error('Error while getting players list for match selection');
 				deferred.reject(errResponse);
 			});
 			return deferred.promise;
