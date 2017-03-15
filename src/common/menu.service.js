@@ -35,9 +35,14 @@
 		}
 
 		// To submit player availability
-		function playerForSelection(playerId, playerName) {
+		service.playerForSelection =   function (playerId, playerName, availability) {
 			var deferred = $q.defer();
-			$http.post(ApiMVC + 'player/section' + playerId, playerName).then(function(response) {
+			var playerAvailability = {
+					player_id : playerId,
+					player_name : playerName,
+					player_availability : availability
+			};
+			$http.post(ApiMVC + '/selection' , playerAvailability, {headers: {'Content-Type': 'application/json'} }).then(function(response) {
 				deferred.resolve(response.data);
 			}, function(errResponse) {
 				console.error('in Menu Service: Error while submitting player availability');

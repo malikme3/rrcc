@@ -10,9 +10,9 @@
 		$ctrl.playerAvailablity = "Available";
 		$ctrl.playerName = [];
 		$ctrl.key_search = "";
-		$ctrl.upDateSelection = function(name) {
+		/*$ctrl.upDateSelection = function(name) {
 			$ctrl.key_search = name;
-		}
+		}*/
 		/*
 		 * $ctrl.getTeamPlayers = function() { $ctrl.playerList =
 		 * MenuService.getTeamPlayers(); console.log("BEFORE: playerList =
@@ -40,10 +40,14 @@
 			$ctrl.playerName = response;
 		});
 
-		$ctrl.playerForSelection = function(playerId, playerName) {
-			MenuService.playerForSelection(playerId, playerName).then(fetchAllUsers, function(errResponse) {
-				console.error('In vailability Controller:Error submitting player for team selection');
-			});
+		$ctrl.submitPlayer = function(player) {
+			$ctrl.playerData = player;
+			$ctrl.key_search = $ctrl.playerData.player_name;
+		}
+
+		$ctrl.playerForSelection = function(playerName, availability) {
+			var playerId = $ctrl.playerData.player_id;
+			MenuService.playerForSelection(playerId, playerName, availability);
 		}
 
 	}
