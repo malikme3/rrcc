@@ -14,6 +14,7 @@
 		$ctrl.notAvailablePlayer = [];
 		$ctrl.OutOfTownPlayer = [];
 		$ctrl.tentivePlayer = [];
+		$ctrl.submittButton = false;
 		/*$ctrl.upDateSelection = function(name) {
 			$ctrl.key_search = name;
 		}*/
@@ -50,29 +51,21 @@
 
 		MenuService.getTeamPlayers().then(function(response) {
 			$ctrl.players = response;
-			angular.forEach($ctrl.players, function(player) {
-				if (player.player_availability == 'Available') {
-					$ctrl.availablePlayer.push(player.player_availability);
-				} else if (player.player_availability == ' Not-Available ') {
-					$ctrl.notAvailablePlayer.push(player.player_availability);
-				} else if (player.player_availability == 'Out of town') {
-					$ctrl.OutOfTownPlayer.push(player.player_availability);
-				} else if (player.player_availability == 'tentivePlayer') {
-					$ctrl.tentivePlayer.push(player.player_availability);
-				}
-
-			});
 		});
 
-		$ctrl.submitPlayer = function(player) {
+		$ctrl.playerClicked = function(player) {
 			$ctrl.playerData = player;
 			$ctrl.key_search = $ctrl.playerData.player_name;
+			$ctrl.submittButton = true;
 		}
 
-		$ctrl.playerForSelection = function(playerName, availability) {
+		$ctrl.submitAvailability = function(playerName, availability) {
 			var playerId = $ctrl.playerData.player_id;
 			MenuService.playerForSelection(playerId, playerName, availability).then(function(response) {
-				$ctrl.getMatchPlayerlist = $ctrl.updatePlayers();
+				$ctrl.players = response;
+			});
+			MenuService.getTeamPlayers().then(function(response) {
+				$ctrl.players = response;
 			});
 		}
 
