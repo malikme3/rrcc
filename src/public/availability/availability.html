@@ -11,14 +11,21 @@
 				Availability: <select ng-model="availabilityCtrl.playerAvailablity" ng-options="person for person in availabilityCtrl.options" placeholder="Please add your availability here" class="form-control"></select>
 
 			</div>
-			<button class="button" ng-click="">Reset</button>
 			<input ng-if="availabilityCtrl.submittButton" type="submit" name="please" class="button">
 	</form>
-
-</div>
 Players available:
-<div class="form-group" ng-repeat="player in availabilityCtrl.players">
-	<class="form-group " > {{player.player_id}} - {{player.player_name}} &nbsp &nbsp {{player.player_availability}} </br>
 </div>
+
+<span class="form-group" ng-repeat="player in availabilityCtrl.players | orderBy : 'player.player_availability'">
+	
+
+    <form action="" method="post">
+        {{player.player_id}} - {{player.player_name}} &nbsp &nbsp {{player.player_availability}}
+  <input type="radio" name="{{player.player_name}}" value="chocolate" />
+  
+</form>
+</span>
+    
+ 
 <div class="form-group"></div>
 
