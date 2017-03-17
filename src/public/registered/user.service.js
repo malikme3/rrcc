@@ -4,8 +4,8 @@
 angular.module('common')
 .service('UserService', UserService);
 
-UserService.$inject = ['$http', 'ApiPath'];
-function UserService($http,ApiPath) {
+UserService.$inject = ['$http', 'ApiPath', '$q', 'ApiMVC'];
+function UserService($http,ApiPath, $q, ApiMVC) {
   var service = this;
   service.userInfo = {"firstName":"", "lastName":"", "email":"", "phone":"", "fave":"","short_name":"","name":"","description":"","imgPath":""};
 
@@ -42,6 +42,20 @@ function UserService($http,ApiPath) {
       });
     }
   };
+  
+  service.setPlayerInfo = function(playerInfo){
+	  console.log("In service for registration");
+	  service.playerInfo = playerInfo;
+		var deferred = $q.defer();
+		
+		$http.post(ApiMVC + '/registplayer' , playerInfo, {headers: {'Content-Type': 'application/json'} }).then(function(response) {
+			deferred.resolve(response.data);
+		}, function(errResponse) {
+			console.error('in User Service: Error while registrating player');
+			deferred.reject(errResponse);
+		});
+		return deferred.promise;
+	}
 
     service.getMenuItem = function (category) {
         return $http.get(ApiPath + '/menu_items/'+category+'.json'); 
