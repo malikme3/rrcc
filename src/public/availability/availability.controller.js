@@ -18,37 +18,39 @@
         $ctrl.isCaptain = true;
         
        /* For Team Selection*/
-      var proPagateFieldSelection = [];
-       $ctrl.checkedField = function checkedField(fieldName) {
-          var idx = proPagateFieldSelection.indexOf(fieldName);
+      var selectedPlayers = [];
+       $ctrl.checkedPlayer = function checkedPlayer(fieldName) {
+          var idx = selectedPlayers.indexOf(fieldName);
           $ctrl.players.forEach(function(component) {
             if (idx > -1) {
               if (component.player_name == fieldName) {
-                var idxUnchecked = proPagateFieldSelection.indexOf(fieldName);
+                var idxUnchecked = selectedPlayers.indexOf(fieldName);
                 if (idxUnchecked != -1) {
-                proPagateFieldSelection.splice(idx, 1);
+                selectedPlayers.splice(idx, 1);
                 component.editable = false;
                 component.disabled = true;
                 }
               }
             } else {
               if (component.player_name == fieldName) {
-                var idxChecked = proPagateFieldSelection.indexOf(fieldName);
+                var idxChecked = selectedPlayers.indexOf(fieldName);
                 if (idxChecked == -1) {
-                proPagateFieldSelection.push(fieldName);
+                selectedPlayers.push(fieldName);
                 component.editable = true;
                 component.disabled = false;
                 }
               }
             }
           });
-        };
-        
-        
-        
-		/*$ctrl.upDateSelection = function(name) {
-			$ctrl.key_search = name;
-		}*/
+		        };
+
+		$ctrl.submitTeam = function submitTeam() {
+
+		};
+
+		/*
+		 * $ctrl.upDateSelection = function(name) { $ctrl.key_search = name; }
+		 */
 		/*
 		 * $ctrl.getTeamPlayers = function() { $ctrl.playerList =
 		 * MenuService.getTeamPlayers(); console.log("BEFORE: playerList =
