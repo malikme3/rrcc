@@ -137,3 +137,20 @@
 			text-shadow: 0px -1px 1px #bdb5b4, 0px 1px 1px white;
 		}
 /*End button here*/
+/*Start for check selection here*/
+.player
+{
+    display: block;
+    border-top: 4px solid #a7a59b;
+    background-color: #f6b319;
+    height: 35px;
+    line-height: q2px;
+    padding: 8px 8px;
+    font-size: 14px;
+    color: blue;
+    margin-bottom: 13px;
+    clear:both;
+}
+.player .name { float:left }
+.player .avail { float:right }
+/*End for check selection here*/
