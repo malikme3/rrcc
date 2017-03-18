@@ -1,31 +1,17 @@
 <div class="container">
-	<h1 color="white">Welcome to Lion Team</h1>
-	<form ng-submit="availabilityCtrl.submitAvailability(availabilityCtrl.key_search, availabilityCtrl.playerAvailablity)">
-		<div class="form-group">
-
-			Your Name: <input id="" type="text" ng-model="availabilityCtrl.key_search" placeholder="Please add your name here" class="form-control">
-			<ul ng-if="availabilityCtrl.key_search" ng-repeat="name in availabilityCtrl.players  | filter : availabilityCtrl.key_search | limitTo:5">
-				<li ng-click="availabilityCtrl.playerClicked(name)" ng-hide="name.player_name==availabilityCtrl.key_search">{{name.player_name}}</li>
-			</ul>
-			<div class="form-group">
-				Availability: <select ng-model="availabilityCtrl.playerAvailablity" ng-options="person for person in availabilityCtrl.options" placeholder="Please add your availability here" class="form-control"></select>
-
-			</div>
-			<input ng-if="availabilityCtrl.submittButton" type="submit" name="please" class="button">
-	</form>
-Players available:
-</div>
-
-<span class="form-group" ng-repeat="player in availabilityCtrl.players | orderBy : 'player.player_availability'">
-	
-
-    <form action="" method="post">
-        {{player.player_id}} - {{player.player_name}} &nbsp &nbsp {{player.player_availability}}
-  <input type="radio" name="{{player.player_name}}" value="chocolate" />
-  
-</form>
-</span>
-    
- 
-<div class="form-group"></div>
-
+    <h1 color="white">Welcome to Lion Team</h1>
+    <form ng-submit="availabilityCtrl.submitAvailability(availabilityCtrl.key_search, availabilityCtrl.playerAvailablity)">
+        <div class="form-group"> Your Name:
+            <input id="" type="text" ng-model="availabilityCtrl.key_search" placeholder="Please add your name here" class="form-control">
+            <ul ng-if="availabilityCtrl.key_search" ng-repeat="name in availabilityCtrl.players  | filter : availabilityCtrl.key_search | limitTo:5">
+                <li ng-click="availabilityCtrl.playerClicked(name)" ng-hide="name.player_name==availabilityCtrl.key_search">{{name.player_name}}</li>
+            </ul>
+            <div class="form-group"> Availability:
+                <select ng-model="availabilityCtrl.playerAvailablity" ng-options="person for person in availabilityCtrl.options" placeholder="Please add your availability here" class="form-control"></select>
+            </div>
+            <input ng-if="availabilityCtrl.submittButton" type="submit" name="please" class="button"> </form> Players available: </div>
+    <div class="form-group player" ng-repeat="player in availabilityCtrl.players | orderBy : 'player.player_availability'">
+        <form method="post"> <span class="name">{{player.player_id}} - {{player.player_name}} </span> <span class="avail">{{player.player_availability}}</span> &ensp;
+            <input ng-if="!isCaptain" type="checkbox" id="{{player.player_name}}" name="{{player.player_name}}" ng-checked="availabilityCtrl.selection.indexOf(player.player_name) > -1" ng-click="availabilityCtrl.checkedField(player.player_name)" /> </form>
+    </div>
+    <div class="form-group"></div>
