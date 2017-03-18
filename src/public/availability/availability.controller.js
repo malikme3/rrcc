@@ -15,6 +15,37 @@
 		$ctrl.OutOfTownPlayer = [];
 		$ctrl.tentivePlayer = [];
 		$ctrl.submittButton = false;
+        $ctrl.isCaptain = true;
+        
+       /* For Team Selection*/
+      var proPagateFieldSelection = [];
+       $ctrl.checkedField = function checkedField(fieldName) {
+          var idx = proPagateFieldSelection.indexOf(fieldName);
+          $ctrl.players.forEach(function(component) {
+            if (idx > -1) {
+              if (component.player_name == fieldName) {
+                var idxUnchecked = proPagateFieldSelection.indexOf(fieldName);
+                if (idxUnchecked != -1) {
+                proPagateFieldSelection.splice(idx, 1);
+                component.editable = false;
+                component.disabled = true;
+                }
+              }
+            } else {
+              if (component.player_name == fieldName) {
+                var idxChecked = proPagateFieldSelection.indexOf(fieldName);
+                if (idxChecked == -1) {
+                proPagateFieldSelection.push(fieldName);
+                component.editable = true;
+                component.disabled = false;
+                }
+              }
+            }
+          });
+        };
+        
+        
+        
 		/*$ctrl.upDateSelection = function(name) {
 			$ctrl.key_search = name;
 		}*/
