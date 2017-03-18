@@ -19,7 +19,7 @@
 		signUpCtrl.goSubmit = function() {
 			console.log(signUpCtrl.malik);
 			var playerInfo = {
-					"plyer_firstName" : signUpCtrl.malik,
+					"player_firstName" : signUpCtrl.firstName,
 					"player_lastName" : signUpCtrl.lastName,
 					"player_email" : signUpCtrl.email,
 					"player_phone" : signUpCtrl.phone,

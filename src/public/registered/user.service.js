@@ -48,7 +48,7 @@ function UserService($http,ApiPath, $q, ApiMVC) {
 	  service.playerInfo = playerInfo;
 		var deferred = $q.defer();
 		
-		$http.post(ApiMVC + '/registplayer' , playerInfo, {headers: {'Content-Type': 'application/json'} }).then(function(response) {
+		$http.post(ApiMVC + '/player/registration' , playerInfo, {headers: {'Content-Type': 'application/json'} }).then(function(response) {
 			deferred.resolve(response.data);
 		}, function(errResponse) {
 			console.error('in User Service: Error while registrating player');
