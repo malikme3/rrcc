@@ -57,10 +57,23 @@ function UserService($http,ApiPath, $q, ApiMVC) {
 		return deferred.promise;
 	}
 
+  // For login
+  service.goLogin = function(loginInfo){
+	  console.log("In service: For Login");
+	  service.playerInfo = loginInfo;
+		var deferred = $q.defer();
+		$http.get(ApiMVC + '/player/login' , loginInfo, {headers: {'Content-Type': 'application/json'} }).then(function(response) {
+			deferred.resolve(response.data);
+		}, function(errResponse) {
+			console.error('in User Service: Error while registrating player');
+			deferred.reject(errResponse);
+		});
+		return deferred.promise;
+	}
+
     service.getMenuItem = function (category) {
         return $http.get(ApiPath + '/menu_items/'+category+'.json'); 
   };
-
 
 }
 })();

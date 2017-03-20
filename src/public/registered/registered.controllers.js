@@ -1,6 +1,9 @@
 (function() {
 	'use strict';
-	angular.module('common').controller('SignUpController', SignUpController).controller('MyInfoController', MyInfoController);
+	angular.module('common')
+	.controller('SignUpController', SignUpController)
+	.controller('MyInfoController', MyInfoController)
+	.controller('LogInController', LogInController);
 
 	SignUpController.$inject = [ 'UserService' ];
 	function SignUpController(UserService) {
@@ -100,5 +103,25 @@
 		myInfCtrl.existing = function() {
 			return (myInfCtrl.userInfo.firstName === "");
 		}
+	}
+	//$ctrl.checkedPlayer = function checkedPlayer(fieldName) {
+	LogInController.$inject = [ 'UserService' ];
+	function LogInController(UserService) {
+		var logInCtrl = this;
+		logInCtrl.loginId = "true";
+		logInCtrl.loginPassword = "true";
+
+		var loginInfo = {
+			"username" : logInCtrl.username,
+			"password" : logInCtrl.password
+		};
+
+		logInCtrl.loginSubmit = function loginSubmit() {
+			console.log("Submitting login details for sign in");
+			UserService.goLogin(loginInfo).then(function(response) {
+				$ctrl.players = response;
+			});
+		}
+
 	}
 })();

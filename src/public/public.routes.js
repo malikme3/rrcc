@@ -86,6 +86,13 @@
                 , controller: 'SignUpController'
                 , controllerAs: 'signUpCtrl'
             })
+            //For login
+            .state('public.login', {
+                url: '/register/login'
+                , templateUrl: 'src/public/registered/login.html'
+                , controller: 'LogInController'
+                , controllerAs: 'logInCtrl'
+            })
             // I add this - end
             .state('public.menuitems', {
                 url: '/menu/{category}'
