@@ -1,96 +1,72 @@
 (function() {
 	'use strict';
-	angular.module('common')
-	.controller('SignUpController', SignUpController)
-	.controller('MyInfoController', MyInfoController)
-	.controller('LogInController', LogInController);
+	angular.module('common').controller('SignUpController', SignUpController).controller('MyInfoController', MyInfoController).controller(
+			'LogInController', LogInController);
 
 	SignUpController.$inject = [ 'UserService' ];
 	function SignUpController(UserService) {
 		var signUpCtrl = this;
+
 		signUpCtrl.submitted = false;
+		signUpCtrl.isPlayerExist = false;
+		signUpCtrl.fn_check = false;
+		signUpCtrl.ln_check = false;
+
 		signUpCtrl.existing = function() {
 			return (UserService.getUserInfo().firstName === "");
 		}
-		
-		
-		console.log(signUpCtrl.firs);
-		
-		
 
 		// Submitting details for player registration (only one time)
-		signUpCtrl.goSubmit = function() {
-			console.log(signUpCtrl.malik);
-			var playerInfo = {
-					"player_firstName" : signUpCtrl.firstName,
-					"player_lastName" : signUpCtrl.lastName,
-					"player_email" : signUpCtrl.email,
-					"player_phone" : signUpCtrl.phone,
-					"player_address" : signUpCtrl.address,
-					"player_team" : signUpCtrl.team,
-					"player_club" : signUpCtrl.club,
-					"player_skills" : signUpCtrl.skills,
-					"player_availability" : "Not Available"
-				};
-
+		signUpCtrl.goSubmit = function goSubmit(playerInfo) {
+			console.log("Calling back end to PLAYER UPDATE OF regis")
 			console.log("Submitting Player details for regiration");
 			UserService.setPlayerInfo(playerInfo).then(function(response) {
-				$ctrl.players = response;
+				signUpCtrl.players = response;
 			});
-		};
-		
-		signUpCtrl.go = function() {
-			var item;
-			for (item in signUpCtrl) {
-				console.log(item)   
-				if (item == undefined) {
-					item = "";
-				}
-			}
-			var userInfo = {
-				"firstName" : signUpCtrl.name,
-				"lastName" : signUpCtrl.surname,
-				"email" : signUpCtrl.email,
-				"phone" : signUpCtrl.phone,
-				"fave" : signUpCtrl.fave,
-				"short_name" : "",
-				"name" : "",
-				"description" : "",
-				"imgPath" : ""
-			};
-			console.log("userInfo", userInfo)
-			signUpCtrl.response = UserService.setUserInfo(userInfo);
-			console.log("signUpCtrl.response", signUpCtrl.response)
-			signUpCtrl.submitted = true;
 		}
 
-		signUpCtrl.input = [ {
-			"field-title" : "First Nam",
-			"field-value" : "first_name"
-		}, {
-			"field-title" : "Last Name",
-			"field-value" : "last_name"
-		}, {
-			"field-title" : "E-Mail",
-			"field-value" : "email"
-		}, {
-			"field-title" : "Phone #",
-			"field-value" : "phone"
-		}, {
-			"field-title" : "Address",
-			"field-value" : "address"
-		}, {
-			"field-title" : "City",
-			"field-value" : "city"
-		}, {
-			"field-title" : "team",
-			"field-value" : "team"
-		}, {
-			"field-title" : "club",
-			"field-value" : "club"
-		} ];
-	}
+		// Checking if user already exist
+		signUpCtrl._fn_check = function fhncheck(player) {
 
+			if (player != undefined) {
+				console.log("First Name has been Added " + player.player_firstName)
+				signUpCtrl.fn_check = true;
+				if (signUpCtrl.ln_check && player.player_firstName.length > 3) {
+					signUpCtrl.checkPlayerInfo(player);
+				}
+			}
+		}
+		signUpCtrl._ln_check = function lncheck(player) {
+
+			if (player != undefined) {
+				console.log("Last Name has been Added " + player.player_lastName)
+				signUpCtrl.ln_check = true;
+				if (signUpCtrl.fn_check && player.player_lastName.length > 3) {
+					signUpCtrl.checkPlayerInfo(player);
+				}
+			}
+		}
+
+		// Populating existing player
+		signUpCtrl.checkPlayerInfo = function(player) {
+			console.log("Calling back end to get Information, if Player already exisit")
+			UserService.checkExistingPayer(player).then(function(response) {
+
+				if (response.length == 1) {
+					signUpCtrl.isPlayerExist = true;
+					signUpCtrl.player = response[0];
+				} else if (response.length >= 2) {
+					signUpCtrl.isPlayerExist = true;
+					console.log("More than player exist with indentical First and Last Name")
+				} else {
+					signUpCtrl.isPlayerExist = false;
+					console.log("Player donot Exist, Please register your self")
+				}
+			});
+		}
+	};
+
+	/* *************Start of MyInfoController ************* */
 	MyInfoController.$inject = [ 'UserService', 'favoriteItem' ];
 	function MyInfoController(UserService, favoriteItem) {
 		var myInfCtrl = this;
@@ -104,7 +80,8 @@
 			return (myInfCtrl.userInfo.firstName === "");
 		}
 	}
-	//$ctrl.checkedPlayer = function checkedPlayer(fieldName) {
+
+	/* *************Start of LogInController ************* */
 	LogInController.$inject = [ 'UserService' ];
 	function LogInController(UserService) {
 		var logInCtrl = this;
@@ -119,7 +96,7 @@
 		logInCtrl.loginSubmit = function loginSubmit() {
 			console.log("Submitting login details for sign in");
 			UserService.goLogin(loginInfo).then(function(response) {
-				$ctrl.players = response;
+				logInCtrl.players = response;
 			});
 		}
 

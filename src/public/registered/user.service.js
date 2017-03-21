@@ -57,6 +57,21 @@ function UserService($http,ApiPath, $q, ApiMVC) {
 		return deferred.promise;
 	}
 
+// Checking if user already exist
+  service.checkExistingPayer = function(playerInfo){
+	  console.log("In service for checking existing player");
+	  service.playerInfo = playerInfo;
+		var deferred = $q.defer();
+
+		$http.post(ApiMVC + '/player/exist' , playerInfo, {headers: {'Content-Type': 'application/json'} }).then(function(response) {
+			deferred.resolve(response.data);
+		}, function(errResponse) {
+			console.error('in User Service: Error while checking existing player');
+			deferred.reject(errResponse);
+		});
+		return deferred.promise;
+	}
+
   // For login
   service.goLogin = function(loginInfo){
 	  console.log("In service: For Login");
