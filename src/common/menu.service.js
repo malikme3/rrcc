@@ -25,7 +25,7 @@
 		// To get the Team players from Registered roster
 		service.getTeamPlayers = function() {
 			var deferred = $q.defer();
-			$http.get(ApiMVC+'/team/selection').then(function(response) {
+			$http.get(ApiMVC+'/players/selection').then(function(response) {
 				deferred.resolve(response.data);
 			}, function(errResponse) {
 				console.error('Error while getting players list for match selection');
@@ -35,11 +35,12 @@
 		}
 
 		// To submit player availability
-		service.playerForSelection =   function (playerId, playerName, availability) {
+		service.playerForSelection =   function (player, availability) {
 			var deferred = $q.defer();
 			var playerAvailability = {
-					player_id : playerId,
-					player_name : playerName,
+					player_id : player.player_id,
+					player_firstName : player.player_firstName,
+					player_lastName : player.player_lastName,
 					player_availability : availability
 			};
 			$http.post(ApiMVC + '/selection' , playerAvailability, {headers: {'Content-Type': 'application/json'} }).then(function(response) {
