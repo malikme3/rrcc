@@ -35,15 +35,25 @@
 		}
 
 		// To submit player availability
-		service.playerForSelection =   function (player, availability) {
+		service.playerForSelection = function(player, availability) {
 			var deferred = $q.defer();
-			var playerAvailability = {
+			if (availability === "selection") {
+				var playerAvailability = player;
+			} else {
+				playerAvailability = {
 					player_id : player.player_id,
 					player_firstName : player.player_firstName,
 					player_lastName : player.player_lastName,
 					player_availability : availability
-			};
-			$http.post(ApiMVC + '/selection' , playerAvailability, {headers: {'Content-Type': 'application/json'} }).then(function(response) {
+				};
+			}
+
+			$http.post(ApiMVC + '/selection', {
+				headers : {
+					'Content-Type' : 'application/json'
+				},
+				params : playerAvailability
+			}).then(function(response) {
 				deferred.resolve(response.data);
 			}, function(errResponse) {
 				console.error('in Menu Service: Error while submitting player availability');
