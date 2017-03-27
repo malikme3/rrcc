@@ -14,10 +14,18 @@
 		$ctrl.notAvailablePlayer = [];
 		$ctrl.OutOfTownPlayer = [];
 		$ctrl.tentivePlayer = [];
+
+		/* Date Start */
+		$ctrl.checkDate = new Date();
+		$ctrl.day = $ctrl.checkDate.getDay();
+		$ctrl.fullDate = $ctrl.checkDate.toDateString();
+
+		/* Date End */
+
 		$ctrl.submittButton = false;
 		$ctrl.isCaptain = true;
 
-		/* For Team Selection*/
+		/* For Team Selection */
 		$ctrl.selectedPlayers = [];
 		$ctrl.checkedPlayer = function checkedPlayer(fieldName) {
 			var idx = $ctrl.selectedPlayers.indexOf(fieldName);
@@ -44,10 +52,6 @@
 			});
 		};
 
-		$ctrl.submitTeam = function submitTeam() {
-
-		};
-
 		MenuService.getTeamPlayers().then(function(response) {
 			$ctrl.players = response;
 		});
@@ -72,13 +76,16 @@
 				angular.forEach($ctrl.selectedPlayers, function(select) {
 					if (aPlayer.player_firstName == select) {
 						aPlayer.player_availability = "In Playing XI"
-					} else {
-						aPlayer.player_availability = "Not in Playing XI"
 					}
 				})
 
 			})
-			MenuService.playerForSelection(player, "selection").then(function(response) {
+			angular.forEach(player, function(aPlayer) {
+				if (aPlayer.player_availability != "In Playing XI") {
+					aPlayer.player_availability = "Not in Playing Xi"
+				}
+			})
+			MenuService.submittingPlayingXI(player).then(function(response) {
 				$ctrl.players = response;
 			});
 		}

@@ -2,7 +2,11 @@
 	<h1 color="white">Welcome Lion</h1>
 	<form ng-submit="availabilityCtrl.submitAvailability(availabilityCtrl.playerAvailablity)">
 		<div class="form-group">
-			Your Name:
+			<div class="container">
+				<span class="left">Your Name</span>
+				<span class="right">{{availabilityCtrl.checkDate | date : "EEE, MMM d"}}</span>
+			</div>
+
 			<input
 				id=""
 				type="text"
@@ -46,7 +50,7 @@
 					ng-if="isSelected">{{player.player_availability}}</span>
 				&ensp;
 				<input
-					ng-if="!isCaptain"
+					ng-if="!isCaptain && availabilityCtrl.day == 4"
 					type="checkbox"
 					id="{{player.player_name}}"
 					name="{{player.player_name}}"

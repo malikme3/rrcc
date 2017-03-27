@@ -201,3 +201,16 @@ a[ui-sref="admin.auth"] {
   }
   /* End Header */
 }
+   .left{
+  display: block;
+  float:left;
+  width: 100px;
+}
+
+.right{
+  display: block;
+  float:right;
+  
+  width: 100px;
+  white-space: nowrap;
+}
