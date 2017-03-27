@@ -6,7 +6,12 @@
 	function MenuService($http, ApiPath, ApiMVC, $q) {
 		var service = this;
 		service.getCategories = function() {
-			$http.get('http://localhost:8001/ZulfiCricket/home').then(function(response) {
+			$http.get('http://localhost:8001/ZulfiCricket/home', {
+				headers : {
+					'Access-Control-Allow-Origin' : '*',
+					'Content-Type' : 'application/json'
+				}
+			}).then(function(response) {
 				return response.data;
 			});
 		};
@@ -25,7 +30,12 @@
 		// To get the Team players from Registered roster
 		service.getTeamPlayers = function() {
 			var deferred = $q.defer();
-			$http.get(ApiMVC + '/players/selection').then(function(response) {
+			$http.get(ApiMVC + '/players/selection', {
+				headers : {
+					'Access-Control-Allow-Origin' : '*',
+					'Content-Type' : 'application/json'
+				}
+			}).then(function(response) {
 				deferred.resolve(response.data);
 			}, function(errResponse) {
 				console.error('Error while getting players list for match selection');
@@ -47,6 +57,7 @@
 
 			$http.post(ApiMVC + '/submit/availability', playerAvailability, {
 				headers : {
+					'Access-Control-Allow-Origin' : '*',
 					'Content-Type' : 'application/json'
 				},
 			}).then(function(response) {
@@ -64,6 +75,7 @@
 			var paramData = JSON.stringify(player);
 			$http.post(ApiMVC + '/submit/playingXI', paramData, {
 				headers : {
+					'Access-Control-Allow-Origin' : '*',
 					'Content-Type' : 'application/json'
 				}
 			}).then(function(response) {
